@@ -2,6 +2,14 @@
 const inquirer = require('inquirer');
 // require fs for writing files (node file system)
 const fs = require('fs');
+// require the shapes.js file
+const { circle, triangle, square } = require('./lib/shapes');
+
+let shapeType;
+switch(shapeType){
+    case 'circle':
+        break;
+}
 
 inquirer
     .prompt ([
@@ -12,7 +20,7 @@ inquirer
             // validate ensures the user cannot enter more than 3 characters.
             validate: logoText => {
                 if(logoText.length > 3) {
-                    console.log('Make sure to enter no more than 3 characters.');
+                    console.log(' Make sure to enter no more than 3 characters.');
                 }else {
                     // if 3 or less characters are inputed it will return true and continue on with the questions.
                     return true;
@@ -36,7 +44,7 @@ inquirer
             name: 'shapeColor',
         },
     ]).then((answers) => {
-        fs.writeFile('logo.svg', answers, error => {
+        fs.writeFile('./examples/logo.svg', JSON.stringify(answers, null), error => {
             // if there was an error it will be console logged, if successful it will log 'Generated logo.svg' in the console.
             error ? console.log(error, 'Something went wrong') : console.log('Generated logo.svg');
         })
