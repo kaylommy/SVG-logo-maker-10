@@ -36,6 +36,14 @@ inquirer
             type: 'input',
             message: 'What color would you like your shape? Please enter a color name or the hexadecimal number:',
             name: 'shapeColor',
+            // this validate compares if the shapeColor and textColor are the same if they are it logs a message to enter a new color.
+            validate: (shapeColor, answers) => {
+                if(shapeColor === answers.textColor){
+                    console.log(' The shape color and text color cannot be the same. Please enter a new color');
+                }else {
+                    return true;
+                }
+            }
         },
     ]).then((answers) => {
         // if statement for each shape and their corresponding svg file
